@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title', 'My Photo Album')</title>
+    
+    <style>
+        /* ================================
+           GLOBAL STYLES
+           ================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================================
+           HEADER STYLES
+           ================================ */
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 3em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* ================================
+           NAVIGATION STYLES
+           ================================ */
+
+        .navigation {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            display: block;
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-links a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-links a.active {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+        }
+
+        /* ================================
+           CONTAINER STYLES
+           ================================ */
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        /* ================================
+           HOME PAGE STYLES
+           ================================ */
+
+        .home-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .home-content h2 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .intro-text {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .category-card {
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .category-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .category-preview {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .category-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover .category-preview img {
+            transform: scale(1.1);
+        }
+
+        .category-info {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .category-info h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.6em;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .category-info p {
+            margin: 0 0 15px 0;
+            color: #7f8c8d;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .photo-count {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        /* ================================
+           PAGE HEADER STYLES
+           ================================ */
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .page-header h2 {
+            color: #2c3e50;
+            font-size: 2.8em;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        /* ================================
+           PHOTO GRID STYLES
+           ================================ */
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #ecf0f1;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-card h3 {
+            margin: 20px 20px 10px 20px;
+            color: #2c3e50;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .photo-card p {
+            margin: 0 20px 15px 20px;
+            color: #7f8c8d;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .photo-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 20px 20px 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+
+        .photo-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ================================
+           BACK BUTTON STYLES
+           ================================ */
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back:hover {
+            background: linear-gradient(135deg, #7f8c8d 0%, #6c7a89 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ================================
+           FOOTER STYLES
+           ================================ */
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        /* ================================
+           RESPONSIVE STYLES
+           ================================ */
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h2 {
+                font-size: 2em;
+            }
+
+            .home-content h2 {
+                font-size: 2em;
+            }
+
+            .intro-text {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-card img {
+                height: 200px;
+            }
+
+            .page-header h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>My Photo Album</h1>
+            <p class="subtitle">A Collection of 100 Stunning Photographs</p>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <ul class="nav-links">
+            <li><a href="{{ route('home') }}" class="{{ Request::is('/') ? 'active' : '' }}">Home</a></li>
+            <li><a href="{{ route('page1') }}" class="{{ Request::is('page1') ? 'active' : '' }}">Nature Photos</a></li>
+            <li><a href="{{ route('page2') }}" class="{{ Request::is('page2') ? 'active' : '' }}">Architecture</a></li>
+            <li><a href="{{ route('page3') }}" class="{{ Request::is('page3') ? 'active' : '' }}">Animals</a></li>
+            <li><a href="{{ route('page4') }}" class="{{ Request::is('page4') ? 'active' : '' }}">People & Events</a></li>
+            <li><a href="{{ route('page5') }}" class="{{ Request::is('page5') ? 'active' : '' }}">Miscellaneous</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        @yield('content')
+    </main>
+
+    <footer>
+        <p>&copy; {{ date('Y') }} My Photo Album - School Project</p>
+    </footer>
+</body>
+</html>
