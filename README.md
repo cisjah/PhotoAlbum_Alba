@@ -1,3 +1,44 @@
+<img width="1886" height="884" alt="Screenshot 2025-11-25 114446" src="https://github.com/user-attachments/assets/bf39efc6-0db3-45d1-9668-4cced6ad602d" />Program: BSIT 
+Activity Tittle: LAB. Activity  - Photo Album
+Name: Alba, Francis Christian M.
+
+---
+
+### 📸 Description
+This Laravel project displays a digital photo album with 100 images divided into 5 categories:
+
+| Page | Category | Images |
+|------|-----------|---------|
+| 1 | Nature Photos | 20 |
+| 2 | Architechture Photos | 20 |
+| 3 | Animal Photos | 20 |
+| 4 | People Events Photos | 20 |
+| 5 | Miscellaneous Photos | 20 |
+
+Home Page
+<img width="1883" height="833" alt="Screenshot 2025-11-25 113517" src="https://github.com/user-attachments/assets/90668670-9acd-40ed-b169-1b5f252aabb3" />
+Page 1
+<img width="1892" height="881" alt="Screenshot 2025-11-25 113620" src="https://github.com/user-attachments/assets/4f22a317-9456-4018-b9f7-994a30d968a8" />
+<img width="1898" height="806" alt="Screenshot 2025-11-25 113810" src="https://github.com/user-attachments/assets/d03befee-5650-4724-8d6d-2199caeff3a8" />
+<img width="1889" height="785" alt="Screenshot 2025-11-25 113836" src="https://github.com/user-attachments/assets/59d77453-7fed-4412-b31b-6abc661293ac" />
+Page 2
+<img width="1892" height="881" alt="Screenshot 2025-11-25 113938" src="https://github.com/user-attachments/assets/41db7404-21f5-4d62-a97f-400dc0f20529" />
+<img width="1904" height="795" alt="Screenshot 2025-11-25 114002" src="https://github.com/user-attachments/assets/41112f97-a531-4f29-ae91-3ddddb1b95a8" />
+<img width="1890" height="886" alt="Screenshot 2025-11-25 114037" src="https://github.com/user-attachments/assets/e89a1c53-0e83-4164-8b9b-c1535096d081" />
+Page 3
+<img width="1893" height="877" alt="Screenshot 2025-11-25 114141" src="https://github.com/user-attachments/assets/b113cea6-9573-4ba7-94cd-f9036aaf4686" />
+<img width="1893" height="806" alt="Screenshot 2025-11-25 114159" src="https://github.com/user-attachments/assets/a3dcca24-02c5-40f1-b8f5-0eb31210670c" />
+<img width="1894" height="879" alt="Screenshot 2025-11-25 114212" src="https://github.com/user-attachments/assets/fe1e4e8c-c666-409b-8706-3d2f93f0ee76" />
+Page 4 
+<img width="1890" height="880" alt="Screenshot 2025-11-25 114323" src="https://github.com/user-attachments/assets/c3e9d914-630e-47f1-aa49-cbb4e1902b9c" />
+<img width="1894" height="809" alt="Screenshot 2025-11-25 114340" src="https://github.com/user-attachments/assets/4c4678cd-5e1d-4300-aa22-225d78edbbaf" />
+<img width="1898" height="879" alt="Screenshot 2025-11-25 114355" src="https://github.com/user-attachments/assets/d96310db-91c2-4dce-ba4b-c693b12248bc" />
+Page 5
+<img width="1886" height="884" alt="Screenshot 2025-11-25 114446" src="https://github.com/user-attachments/assets/b8899f2b-9530-4681-9c86-080e1180e31f" />
+<img width="1896" height="835" alt="Screenshot 2025-11-25 114509" src="https://github.com/user-attachments/assets/f2acf0ed-2516-4bb6-bc96-839ef283765c" />
+<img width="1889" height="884" alt="Screenshot 2025-11-25 114520" src="https://github.com/user-attachments/assets/372fb58e-9be5-4ec7-8fa6-84dfb3c147e0" />
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
